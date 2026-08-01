@@ -3,21 +3,2915 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>VGM Movie · Series Episodes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background: #0a0a12;
+        font-family: "Inter", sans-serif;
+        min-height: 100vh;
+        padding: 2rem 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        background-image:
+          radial-gradient(
+            ellipse at 10% 20%,
+            rgba(0, 255, 200, 0.03) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 90% 80%,
+            rgba(255, 0, 200, 0.03) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 50% 50%,
+            rgba(100, 0, 255, 0.02) 0%,
+            transparent 70%
+          );
+        position: relative;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          radial-gradient(
+            2px 2px at 20% 30%,
+            rgba(0, 255, 200, 0.15),
+            transparent
+          ),
+          radial-gradient(
+            2px 2px at 40% 70%,
+            rgba(255, 0, 200, 0.1),
+            transparent
+          ),
+          radial-gradient(
+            2px 2px at 60% 20%,
+            rgba(100, 0, 255, 0.12),
+            transparent
+          ),
+          radial-gradient(
+            2px 2px at 80% 80%,
+            rgba(0, 255, 200, 0.08),
+            transparent
+          ),
+          radial-gradient(
+            1px 1px at 10% 90%,
+            rgba(255, 0, 200, 0.1),
+            transparent
+          ),
+          radial-gradient(
+            1px 1px at 90% 10%,
+            rgba(100, 0, 255, 0.1),
+            transparent
+          );
+        background-size: 200px 200px;
+        pointer-events: none;
+        z-index: 0;
+        animation: particleFloat 30s linear infinite;
+      }
+      @keyframes particleFloat {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        25% {
+          transform: translate(10px, -10px) scale(1.05);
+        }
+        50% {
+          transform: translate(-5px, 15px) scale(0.95);
+        }
+        75% {
+          transform: translate(15px, 5px) scale(1.02);
+        }
+        100% {
+          transform: translate(0, 0) scale(1);
+        }
+      }
+      .orb {
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(80px);
+        pointer-events: none;
+        z-index: 0;
+        animation: orbFloat 12s ease-in-out infinite alternate;
+      }
+      .orb-1 {
+        width: 400px;
+        height: 400px;
+        background: rgba(0, 255, 200, 0.04);
+        top: -10%;
+        left: -10%;
+      }
+      .orb-2 {
+        width: 300px;
+        height: 300px;
+        background: rgba(123, 47, 252, 0.04);
+        bottom: -10%;
+        right: -10%;
+        animation-delay: -4s;
+      }
+      .orb-3 {
+        width: 250px;
+        height: 250px;
+        background: rgba(255, 0, 200, 0.03);
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        animation-delay: -8s;
+      }
+      @keyframes orbFloat {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        33% {
+          transform: translate(30px, -30px) scale(1.1);
+        }
+        66% {
+          transform: translate(-20px, 20px) scale(0.9);
+        }
+        100% {
+          transform: translate(15px, -15px) scale(1.05);
+        }
+      }
+      .vgm-screen {
+        max-width: 1500px;
+        width: 100%;
+        background: rgba(12, 12, 24, 0.85);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-radius: 3rem;
+        padding: 2.2rem 2.5rem 0;
+        box-shadow:
+          0 30px 80px -20px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(0, 255, 200, 0.08),
+          0 0 60px rgba(0, 255, 200, 0.02),
+          inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(0, 255, 200, 0.04);
+        position: relative;
+        z-index: 1;
+        animation:
+          screenGlow 4s ease-in-out infinite alternate,
+          containerAppear 0.8s cubic-bezier(0.15, 0.85, 0.35, 1);
+      }
+      @keyframes screenGlow {
+        0% {
+          box-shadow:
+            0 30px 80px -20px rgba(0, 0, 0, 0.9),
+            0 0 0 1px rgba(0, 255, 200, 0.06),
+            0 0 40px rgba(0, 255, 200, 0.01);
+        }
+        100% {
+          box-shadow:
+            0 30px 80px -20px rgba(0, 0, 0, 0.9),
+            0 0 0 1px rgba(255, 0, 200, 0.06),
+            0 0 60px rgba(255, 0, 200, 0.02);
+        }
+      }
+      @keyframes containerAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.97);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .vgm-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1.2rem 2rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.9rem;
+        border-bottom: 1px solid rgba(0, 255, 200, 0.06);
+        position: relative;
+      }
+      .vgm-header::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(0, 255, 200, 0.2),
+          rgba(255, 0, 200, 0.2),
+          transparent
+        );
+        animation: borderPulse 3s ease-in-out infinite;
+      }
+      @keyframes borderPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 1;
+        }
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .brand .logo-icon {
+        font-size: 2.4rem;
+        background: linear-gradient(135deg, #00ffc8, #7b2ffc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 200, 0.2));
+        animation: iconPulse 3s ease-in-out infinite;
+      }
+      @keyframes iconPulse {
+        0%,
+        100% {
+          filter: drop-shadow(0 0 20px rgba(0, 255, 200, 0.2));
+        }
+        50% {
+          filter: drop-shadow(0 0 40px rgba(123, 47, 252, 0.3));
+        }
+      }
+      .brand h1 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        background: linear-gradient(135deg, #00ffc8, #7b2ffc, #ff00c8);
+        background-size: 300% 300%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        animation: gradientShift 4s ease-in-out infinite;
+        display: flex;
+        align-items: baseline;
+        gap: 0.4rem;
+      }
+      @keyframes gradientShift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .brand h1 .sub {
+        font-family: "Inter", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 400;
+        -webkit-text-fill-color: rgba(255, 255, 255, 0.3);
+        color: rgba(255, 255, 255, 0.3);
+        background: none;
+        letter-spacing: 0.5px;
+        padding-left: 0.8rem;
+        border-left: 2px solid rgba(0, 255, 200, 0.1);
+      }
+      .header-badge {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        background: rgba(0, 255, 200, 0.04);
+        padding: 0.4rem 1.6rem 0.4rem 1.2rem;
+        border-radius: 60px;
+        border: 1px solid rgba(0, 255, 200, 0.08);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 0.75rem;
+        font-weight: 400;
+        letter-spacing: 0.3px;
+        backdrop-filter: blur(4px);
+        animation: badgeGlow 3s ease-in-out infinite alternate;
+      }
+      @keyframes badgeGlow {
+        0% {
+          border-color: rgba(0, 255, 200, 0.08);
+        }
+        100% {
+          border-color: rgba(255, 0, 200, 0.08);
+        }
+      }
+      .header-badge i {
+        color: #00ffc8;
+        font-size: 0.5rem;
+        filter: drop-shadow(0 0 12px #00ffc866);
+        animation: dotPulse 2s ease-in-out infinite;
+      }
+      @keyframes dotPulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+      }
+      .fullscreen-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(5, 5, 15, 0.97);
+        backdrop-filter: blur(30px);
+        -webkit-backdrop-filter: blur(30px);
+        z-index: 1000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 2rem;
+        animation: fullscreenFade 0.4s cubic-bezier(0.15, 0.85, 0.35, 1);
+        overflow-y: scroll;
+      }
+      .fullscreen-overlay.active {
+        display: flex;
+      }
+      @keyframes fullscreenFade {
+        0% {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+      .fullscreen-content {
+        max-width: 900px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+        position: relative;
+        background: rgba(16, 16, 32, 0.5);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        padding: 2.5rem 2rem 2rem;
+        border-radius: 3rem;
+        border: 1px solid rgba(0, 255, 200, 0.08);
+        box-shadow:
+          0 40px 100px -30px #000000dd,
+          0 0 0 1px rgba(0, 255, 200, 0.04),
+          0 0 80px rgba(0, 255, 200, 0.02);
+        animation: fullscreenContentIn 0.5s cubic-bezier(0.15, 0.85, 0.35, 1);
+      }
+      @keyframes fullscreenContentIn {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.96);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .fullscreen-back {
+        position: absolute;
+        top: 1.2rem;
+        left: 1.2rem;
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(255, 255, 255, 0.02);
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        z-index: 10;
+        backdrop-filter: blur(4px);
+      }
+      .fullscreen-back:hover {
+        color: #00ffc8;
+        background: rgba(0, 255, 200, 0.04);
+        border-color: rgba(0, 255, 200, 0.08);
+        transform: scale(1.05) rotate(-5deg);
+      }
+      .fullscreen-poster {
+        width: 100%;
+        max-width: 480px;
+        border-radius: 2rem;
+        overflow: hidden;
+        box-shadow:
+          0 30px 80px -20px rgba(0, 0, 0, 0.9),
+          0 0 0 1px rgba(0, 255, 200, 0.04);
+        background: rgba(16, 16, 32, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: transform 0.4s ease;
+      }
+      .fullscreen-poster:hover {
+        transform: scale(1.02);
+      }
+      .fullscreen-poster img {
+        width: 100%;
+        height: auto;
+        display: block;
+        aspect-ratio: 2/3;
+        object-fit: cover;
+        background: #0e0e1e;
+      }
+      .fullscreen-info {
+        text-align: center;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+        padding: 0 0.5rem;
+      }
+      .fullscreen-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+        letter-spacing: 0.05em;
+        text-shadow: 0 2px 30px rgba(0, 0, 0, 0.5);
+        background: linear-gradient(135deg, #f0f0ff, #b0b0ff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .fullscreen-type {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        padding: 0.3rem 1.8rem;
+        border-radius: 40px;
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(4px);
+      }
+      .fullscreen-type.movie-type {
+        color: rgba(0, 255, 200, 0.4);
+        border-color: rgba(0, 255, 200, 0.05);
+      }
+      .fullscreen-type.series-type {
+        color: rgba(123, 47, 252, 0.4);
+        border-color: rgba(123, 47, 252, 0.05);
+      }
+      .fullscreen-actions {
+        display: flex;
+        gap: 1.2rem;
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .fullscreen-actions .btn {
+        padding: 0.9rem 2.4rem;
+        border-radius: 60px;
+        font-family: "Inter", sans-serif;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.15, 0.85, 0.35, 1);
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        border: none;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+      }
+      .fullscreen-actions .btn::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+        transform: rotate(45deg) translateX(-100%);
+        transition: 0.6s;
+      }
+      .fullscreen-actions .btn:hover::after {
+        transform: rotate(45deg) translateX(100%);
+      }
+      .fullscreen-actions .btn-play {
+        background: linear-gradient(135deg, #00ffc8, #00cc9a);
+        color: #0a0a12;
+        box-shadow: 0 8px 40px rgba(0, 255, 200, 0.15);
+      }
+      .fullscreen-actions .btn-play:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 60px rgba(0, 255, 200, 0.2);
+      }
+      .fullscreen-actions .btn-download {
+        background: linear-gradient(135deg, #7b2ffc, #5a1fc9);
+        color: #ffffff;
+        box-shadow: 0 8px 40px rgba(123, 47, 252, 0.15);
+      }
+      .fullscreen-actions .btn-download:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 60px rgba(123, 47, 252, 0.2);
+      }
+      .fullscreen-actions .btn i {
+        font-size: 1.2rem;
+      }
+      .episode-list-container {
+        width: 100%;
+        max-width: 600px;
+        margin-top: 0.5rem;
+        background: rgba(16, 16, 32, 0.6);
+        backdrop-filter: blur(8px);
+        border-radius: 2rem;
+        padding: 1.5rem 1.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        max-height: 320px;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(0, 255, 200, 0.1) transparent;
+      }
+      .episode-list-container::-webkit-scrollbar {
+        width: 4px;
+      }
+      .episode-list-container::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .episode-list-container::-webkit-scrollbar-thumb {
+        background: rgba(0, 255, 200, 0.1);
+        border-radius: 10px;
+      }
+      .episode-list-container h4 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.2);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .episode-list-container h4 i {
+        color: rgba(0, 255, 200, 0.3);
+      }
+      .episode-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.6rem 0.2rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        gap: 0.8rem;
+        transition: background 0.2s;
+      }
+      .episode-item:last-child {
+        border-bottom: none;
+      }
+      .episode-item:hover {
+        background: rgba(255, 255, 255, 0.01);
+        border-radius: 0.5rem;
+      }
+      .episode-item .ep-name {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 400;
+        flex: 1;
+      }
+      .episode-item .ep-actions {
+        display: flex;
+        gap: 0.5rem;
+        flex-shrink: 0;
+      }
+      .episode-item .ep-actions button {
+        background: rgba(255, 255, 255, 0.02);
+        border: none;
+        color: rgba(255, 255, 255, 0.3);
+        padding: 0.3rem 1rem;
+        border-radius: 30px;
+        font-size: 0.7rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        font-family: "Inter", sans-serif;
+        backdrop-filter: blur(4px);
+      }
+      .episode-item .ep-actions button:hover {
+        background: rgba(0, 255, 200, 0.05);
+        color: #00ffc8;
+      }
+      .episode-item .ep-actions .ep-play-btn {
+        color: rgba(0, 255, 200, 0.5);
+      }
+      .episode-item .ep-actions .ep-play-btn:hover {
+        color: #00ffc8;
+        background: rgba(0, 255, 200, 0.08);
+      }
+      .episode-item .ep-actions .ep-download-btn {
+        color: rgba(123, 47, 252, 0.5);
+      }
+      .episode-item .ep-actions .ep-download-btn:hover {
+        color: #7b2ffc;
+        background: rgba(123, 47, 252, 0.08);
+      }
+      .video-player-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 2000;
+        display: none;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        animation: fullscreenFade 0.4s cubic-bezier(0.15, 0.85, 0.35, 1);
+      }
+      .video-player-overlay.active {
+        display: flex;
+      }
+      .video-player-container {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background: #000;
+        overflow: hidden;
+      }
+      .video-wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .video-wrapper video {
+        width: 100%;
+        height: 100%;
+        display: block;
+        background: #000;
+        object-fit: contain;
+      }
+      .video-loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 30;
+        background: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition: opacity 0.6s ease;
+        opacity: 0;
+        pointer-events: none;
+      }
+      .video-loader.active {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .loader-spinner {
+        width: 70px;
+        height: 70px;
+        border: 3px solid rgba(255, 255, 255, 0.05);
+        border-top: 3px solid #00ffc8;
+        border-radius: 50%;
+        animation: spin 0.8s cubic-bezier(0.15, 0.85, 0.35, 1) infinite;
+        box-shadow: 0 0 60px rgba(0, 255, 200, 0.05);
+        position: relative;
+      }
+      .loader-spinner::after {
+        content: "";
+        position: absolute;
+        top: -3px;
+        left: -3px;
+        right: -3px;
+        bottom: -3px;
+        border-radius: 50%;
+        border: 3px solid transparent;
+        border-bottom: 3px solid #7b2ffc;
+        animation: spin 1.2s cubic-bezier(0.15, 0.85, 0.35, 1) infinite reverse;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .loader-text {
+        margin-top: 2rem;
+        color: rgba(255, 255, 255, 0.15);
+        font-family: "Orbitron", sans-serif;
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        animation: loaderTextPulse 1.5s ease-in-out infinite;
+      }
+      .loader-text .loader-dots::after {
+        content: "•••";
+        animation: dotsPulse 1.5s steps(4) infinite;
+      }
+      @keyframes dotsPulse {
+        0% {
+          content: "•";
+        }
+        33% {
+          content: "••";
+        }
+        66% {
+          content: "•••";
+        }
+        100% {
+          content: "•••";
+        }
+      }
+      @keyframes loaderTextPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.9;
+        }
+      }
+      .loader-progress {
+        margin-top: 1.5rem;
+        width: 200px;
+        height: 2px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 2px;
+        overflow: hidden;
+        position: relative;
+      }
+      .loader-progress-bar {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #00ffc8, #7b2ffc);
+        border-radius: 2px;
+        animation: progressLoading 3s ease-in-out infinite;
+      }
+      @keyframes progressLoading {
+        0% {
+          width: 0%;
+        }
+        50% {
+          width: 70%;
+        }
+        100% {
+          width: 90%;
+        }
+      }
+      .loader-error {
+        margin-top: 1rem;
+        color: rgba(255, 100, 100, 0.3);
+        font-family: "Inter", sans-serif;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        display: none;
+        text-align: center;
+        max-width: 300px;
+      }
+      .loader-error.show {
+        display: block;
+      }
+      .loader-error i {
+        font-size: 1.2rem;
+        display: block;
+        margin-bottom: 0.3rem;
+      }
+      .video-title-overlay {
+        position: absolute;
+        top: 1.5rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        font-family: "Orbitron", sans-serif;
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 0.05em;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8);
+        pointer-events: none;
+        z-index: 5;
+      }
+      .video-close-btn {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        font-size: 1.4rem;
+        color: rgba(255, 255, 255, 0.2);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 5;
+        background: rgba(255, 255, 255, 0.02);
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+      }
+      .video-close-btn:hover {
+        color: #ff4444;
+        background: rgba(255, 0, 0, 0.04);
+        border-color: rgba(255, 0, 0, 0.08);
+        transform: scale(1.05);
+      }
+      .video-controls {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(0, 0, 0, 0.85) 0%,
+          transparent 100%
+        );
+        padding: 1.5rem 1.5rem 1.2rem;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        z-index: 20;
+      }
+      .video-wrapper:hover .video-controls,
+      .video-wrapper.show-controls .video-controls {
+        opacity: 1;
+      }
+      .progress-container {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .progress-bar {
+        flex: 1;
+        height: 5px;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 5px;
+        cursor: pointer;
+        position: relative;
+        transition: height 0.2s;
+        touch-action: none;
+      }
+      .progress-bar:hover {
+        height: 7px;
+      }
+      .progress-bar .progress-filled {
+        height: 100%;
+        background: linear-gradient(90deg, #00ffc8, #7b2ffc);
+        border-radius: 5px;
+        width: 0%;
+        position: relative;
+        pointer-events: none;
+      }
+      .progress-bar .progress-filled::after {
+        content: "";
+        position: absolute;
+        right: -6px;
+        top: -4px;
+        width: 13px;
+        height: 13px;
+        background: #00ffc8;
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.2s;
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.3);
+        pointer-events: none;
+      }
+      .progress-bar:hover .progress-filled::after,
+      .progress-bar.dragging .progress-filled::after {
+        opacity: 1;
+      }
+      .time-display {
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.75rem;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+        min-width: 100px;
+        text-align: right;
+        letter-spacing: 0.3px;
+        user-select: none;
+      }
+      .controls-row {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+      .controls-row .ctrl-btn {
+        background: none;
+        border: none;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 1.1rem;
+        cursor: pointer;
+        padding: 0.4rem 0.6rem;
+        border-radius: 8px;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 36px;
+      }
+      .controls-row .ctrl-btn:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.05);
+      }
+      .controls-row .ctrl-btn.play-btn {
+        font-size: 1.6rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .controls-row .ctrl-btn.play-btn:hover {
+        color: #00ffc8;
+        transform: scale(1.05);
+      }
+      .controls-row .ctrl-btn.seek-btn {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.4);
+        padding: 0.3rem 0.8rem;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 20px;
+        font-family: "Inter", sans-serif;
+        font-weight: 500;
+        gap: 0.3rem;
+      }
+      .controls-row .ctrl-btn.seek-btn:hover {
+        color: #00ffc8;
+        border-color: rgba(0, 255, 200, 0.2);
+        background: rgba(0, 255, 200, 0.04);
+      }
+      .controls-row .ctrl-btn.seek-btn i {
+        font-size: 0.7rem;
+      }
+      .controls-row .ctrl-btn.lock-btn {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.3);
+      }
+      .controls-row .ctrl-btn.lock-btn:hover {
+        color: #ff6b6b;
+      }
+      .controls-row .ctrl-btn.lock-btn.locked {
+        color: #ff6b6b;
+      }
+      .controls-row .ctrl-btn.volume-btn {
+        font-size: 1rem;
+      }
+      .controls-row .ctrl-btn.fullscreen-toggle {
+        font-size: 1rem;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .controls-row .ctrl-btn.fullscreen-toggle:hover {
+        color: #ffffff;
+      }
+      .controls-row .volume-slider {
+        width: 60px;
+        height: 3px;
+        -webkit-appearance: none;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 3px;
+        outline: none;
+        transition: height 0.2s;
+      }
+      .controls-row .volume-slider:hover {
+        height: 5px;
+      }
+      .controls-row .volume-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 12px;
+        height: 12px;
+        background: #00ffc8;
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+      }
+      .controls-row .volume-slider::-moz-range-thumb {
+        width: 12px;
+        height: 12px;
+        background: #00ffc8;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+      }
+      .controls-row .spacer {
+        flex: 1;
+      }
+      .lock-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 10;
+        backdrop-filter: blur(2px);
+        cursor: pointer;
+      }
+      .lock-overlay.active {
+        display: flex;
+      }
+      .lock-overlay .lock-icon {
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.2);
+        animation: lockPulse 2s ease-in-out infinite;
+      }
+      @keyframes lockPulse {
+        0%,
+        100% {
+          opacity: 0.3;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.8;
+          transform: scale(1.05);
+        }
+      }
+      .double-tap-indicator {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 3rem;
+        color: rgba(255, 255, 255, 0.6);
+        background: rgba(0, 0, 0, 0.5);
+        padding: 1rem 1.5rem;
+        border-radius: 1rem;
+        pointer-events: none;
+        z-index: 15;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        backdrop-filter: blur(4px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        font-weight: 600;
+      }
+      .double-tap-indicator.show {
+        opacity: 1;
+      }
+      .section-tabs {
+        display: flex;
+        gap: 0.6rem;
+        margin-bottom: 2.2rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+        margin-bottom: 10px;
+      }
+      .section-tab {
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.25);
+        font-size: 0.9rem;
+        font-weight: 500;
+        padding: 0.6rem 1.8rem;
+        border-radius: 60px;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.15, 0.85, 0.35, 1);
+        font-family: "Inter", sans-serif;
+        letter-spacing: 0.3px;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+        border: 1px solid transparent;
+        position: relative;
+      }
+      .section-tab i {
+        font-size: 1rem;
+        opacity: 0.5;
+        transition: 0.3s;
+      }
+      .section-tab:hover {
+        color: rgba(255, 255, 255, 0.5);
+        background: rgba(255, 255, 255, 0.02);
+      }
+      .section-tab.active {
+        color: #00ffc8;
+        background: rgba(0, 255, 200, 0.04);
+        border-color: rgba(0, 255, 200, 0.1);
+        box-shadow:
+          0 0 40px rgba(0, 255, 200, 0.02),
+          inset 0 0 40px rgba(0, 255, 200, 0.01);
+      }
+      .section-tab.active i {
+        opacity: 1;
+      }
+      .section-tab .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.02);
+        color: rgba(255, 255, 255, 0.2);
+        font-size: 0.6rem;
+        font-weight: 600;
+        padding: 0.1rem 0.7rem;
+        border-radius: 40px;
+        min-width: 24px;
+        transition: 0.3s;
+      }
+      .section-tab.active .badge {
+        background: rgba(0, 255, 200, 0.08);
+        color: #00ffc8;
+      }
+      .section-panel {
+        display: none;
+        animation: panelSlide 0.5s cubic-bezier(0.15, 0.85, 0.35, 1);
+      }
+      .section-panel.active {
+        display: block;
+      }
+      @keyframes panelSlide {
+        0% {
+          opacity: 0;
+          transform: translateY(20px) scale(0.98);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .section-search {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.2rem;
+        margin-bottom: 2.2rem;
+        flex-wrap: wrap;
+      }
+      .section-search .title-group {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .section-search .title-group h2 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.05em;
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .section-search .title-group h2 i {
+        color: #00ffc8;
+        font-size: 1.1rem;
+        opacity: 0.6;
+        filter: drop-shadow(0 0 20px rgba(0, 255, 200, 0.1));
+      }
+      .section-search .title-group .count-hint {
+        font-family: "Inter", sans-serif;
+        font-size: 0.7rem;
+        font-weight: 400;
+        color: rgba(255, 255, 255, 0.15);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.2rem 1rem;
+        border-radius: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+      }
+      .search-wrapper {
+        display: flex;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 60px;
+        padding: 0.05rem 0.05rem 0.05rem 1.6rem;
+        border: 1px solid rgba(255, 255, 255, 0.03);
+        transition: all 0.4s cubic-bezier(0.15, 0.85, 0.35, 1);
+        min-width: 200px;
+        max-width: 380px;
+        flex: 1;
+        backdrop-filter: blur(4px);
+        position: relative;
+      }
+      .search-wrapper::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 60px;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 200, 0.1),
+          rgba(123, 47, 252, 0.1),
+          rgba(255, 0, 200, 0.1)
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: 0.4s;
+        pointer-events: none;
+      }
+      .search-wrapper:focus-within::before {
+        opacity: 1;
+      }
+      .search-wrapper:focus-within {
+        border-color: rgba(0, 255, 200, 0.1);
+        box-shadow: 0 0 40px rgba(0, 255, 200, 0.02);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      .search-wrapper input {
+        background: transparent;
+        border: none;
+        padding: 0.7rem 0.2rem 0.7rem 0;
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.7);
+        width: 100%;
+        outline: none;
+        font-family: "Inter", sans-serif;
+        font-weight: 400;
+      }
+      .search-wrapper input::placeholder {
+        color: rgba(255, 255, 255, 0.15);
+        font-weight: 300;
+        letter-spacing: 0.2px;
+      }
+      .search-wrapper button {
+        background: linear-gradient(135deg, #00ffc8, #7b2ffc);
+        border: none;
+        border-radius: 60px;
+        padding: 0.5rem 1.6rem;
+        font-weight: 600;
+        font-size: 0.8rem;
+        color: #0a0a12;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.15, 0.85, 0.35, 1);
+        font-family: "Inter", sans-serif;
+        letter-spacing: 0.3px;
+        white-space: nowrap;
+        box-shadow: 0 4px 30px rgba(0, 255, 200, 0.05);
+        position: relative;
+        overflow: hidden;
+      }
+      .search-wrapper button::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(255, 255, 255, 0.05),
+          transparent
+        );
+        transform: rotate(45deg) translateX(-100%);
+        transition: 0.6s;
+      }
+      .search-wrapper button:hover::after {
+        transform: rotate(45deg) translateX(100%);
+      }
+      .search-wrapper button:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 40px rgba(0, 255, 200, 0.1);
+      }
+      .search-wrapper button:active {
+        transform: scale(0.95);
+      }
+      .search-clear {
+        background: transparent;
+        border: none;
+        color: rgba(255, 255, 255, 0.15);
+        font-size: 1rem;
+        padding: 0 0.8rem 0 0.2rem;
+        cursor: pointer;
+        display: none;
+        transition: color 0.3s;
+      }
+      .search-clear.visible {
+        display: block;
+      }
+      .search-clear:hover {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .movie-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+        gap: 2rem 1.6rem;
+        padding-bottom: 2rem;
+      }
+      .movie-card {
+        background: rgba(16, 16, 32, 0.6);
+        backdrop-filter: blur(8px);
+        border-radius: 10px;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.15, 0.85, 0.35, 1);
+        box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        display: flex;
+        flex-direction: column;
+        transform: translateY(0);
+        position: relative;
+        animation: cardAppear 0.6s cubic-bezier(0.15, 0.85, 0.35, 1) backwards;
+        cursor: pointer;
+      }
+      .movie-card:nth-child(1) {
+        animation-delay: 0.05s;
+      }
+      .movie-card:nth-child(2) {
+        animation-delay: 0.08s;
+      }
+      .movie-card:nth-child(3) {
+        animation-delay: 0.11s;
+      }
+      .movie-card:nth-child(4) {
+        animation-delay: 0.14s;
+      }
+      .movie-card:nth-child(5) {
+        animation-delay: 0.17s;
+      }
+      .movie-card:nth-child(6) {
+        animation-delay: 0.2s;
+      }
+      .movie-card:nth-child(7) {
+        animation-delay: 0.23s;
+      }
+      .movie-card:nth-child(8) {
+        animation-delay: 0.26s;
+      }
+      .movie-card:nth-child(9) {
+        animation-delay: 0.29s;
+      }
+      .movie-card:nth-child(10) {
+        animation-delay: 0.32s;
+      }
+      .movie-card:nth-child(11) {
+        animation-delay: 0.35s;
+      }
+      .movie-card:nth-child(12) {
+        animation-delay: 0.38s;
+      }
+      @keyframes cardAppear {
+        0% {
+          opacity: 0;
+          transform: translateY(30px) scale(0.95);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .movie-card.hidden {
+        display: none;
+      }
+      .movie-card::before {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: 1.8rem;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 200, 0.05),
+          rgba(123, 47, 252, 0.05)
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        opacity: 0;
+        transition: 0.5s;
+        pointer-events: none;
+      }
+      .movie-card:hover::before {
+        opacity: 1;
+      }
+      .movie-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow:
+          0 30px 60px -20px #000000dd,
+          0 0 0 1px rgba(0, 255, 200, 0.05);
+        border-color: rgba(0, 255, 200, 0.05);
+        background: rgba(20, 20, 40, 0.8);
+      }
+      .movie-card::after {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent 40%,
+          rgba(255, 255, 255, 0.01) 50%,
+          transparent 60%
+        );
+        transform: rotate(45deg) translateX(-100%);
+        transition: 0.8s;
+        pointer-events: none;
+        border-radius: 1.8rem;
+      }
+      .movie-card:hover::after {
+        transform: rotate(45deg) translateX(100%);
+      }
+      .movie-poster {
+        width: 100%;
+        aspect-ratio: 2/3;
+        background: #0a0a18;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .movie-poster::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(10, 10, 18, 0.4) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .movie-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.8s cubic-bezier(0.15, 0.85, 0.35, 1);
+        background: #0e0e1e;
+      }
+      .movie-card:hover .movie-poster img {
+        transform: scale(1.06);
+      }
+      .movie-poster::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 200, 0),
+          rgba(123, 47, 252, 0)
+        );
+        transition: 0.5s;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .movie-card:hover .movie-poster::before {
+        background: linear-gradient(
+          135deg,
+          rgba(0, 255, 200, 0.02),
+          rgba(123, 47, 252, 0.02)
+        );
+      }
+      .movie-name {
+        padding: 0.9rem 0.8rem 1.1rem;
+        background: rgba(10, 10, 24, 0.6);
+        backdrop-filter: blur(4px);
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.02);
+        position: relative;
+      }
+      .movie-name h3 {
+        font-family: "Orbitron", sans-serif;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.6);
+        letter-spacing: 0.05em;
+        line-height: 1.4;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 0 0.1rem;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+        transition: color 0.3s;
+      }
+      .movie-card:hover .movie-name h3 {
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .movie-name .type-tag {
+        display: inline-block;
+        font-size: 0.55rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.02);
+        padding: 0.15rem 0.9rem;
+        border-radius: 40px;
+        margin-top: 0.3rem;
+        border: 1px solid rgba(255, 255, 255, 0.02);
+        transition: 0.3s;
+      }
+      .movie-card:hover .type-tag {
+        color: rgba(255, 255, 255, 0.2);
+      }
+      .movie-card .type-tag.movie-tag {
+        color: rgba(0, 255, 200, 0.2);
+        border-color: rgba(0, 255, 200, 0.03);
+      }
+      .movie-card:hover .type-tag.movie-tag {
+        color: rgba(0, 255, 200, 0.3);
+      }
+      .movie-card .type-tag.series-tag {
+        color: rgba(123, 47, 252, 0.2);
+        border-color: rgba(123, 47, 252, 0.03);
+      }
+      .movie-card:hover .type-tag.series-tag {
+        color: rgba(123, 47, 252, 0.3);
+      }
+      .no-results {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 4rem 1.5rem;
+        color: rgba(255, 255, 255, 0.1);
+        font-size: 0.9rem;
+        background: rgba(16, 16, 32, 0.3);
+        border-radius: 2.5rem;
+        border: 1px dashed rgba(255, 255, 255, 0.02);
+        display: none;
+        backdrop-filter: blur(4px);
+        font-family: "Orbitron", sans-serif;
+        letter-spacing: 0.1em;
+      }
+      .no-results.visible {
+        display: block;
+        animation: noResultPulse 2s ease-in-out infinite alternate;
+      }
+      @keyframes noResultPulse {
+        0% {
+          opacity: 0.5;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      .no-results i {
+        font-size: 2.8rem;
+        display: block;
+        margin-bottom: 0.8rem;
+        opacity: 0.2;
+        background: linear-gradient(135deg, #00ffc8, #7b2ffc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .vgm-footer {
+        margin-top: 0.5rem;
+        text-align: center;
+        color: rgba(255, 255, 255, 0.05);
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+        border-top: 1px solid rgba(255, 255, 255, 0.01);
+        padding: 1.5rem 0 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        flex-wrap: wrap;
+        font-family: "Orbitron", sans-serif;
+      }
+      .vgm-footer span {
+        opacity: 0.4;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        transition: opacity 0.3s;
+        cursor: default;
+      }
+      .vgm-footer span:hover {
+        opacity: 0.8;
+      }
+      .vgm-footer a {
+        color: rgba(255, 255, 255, 0.05);
+        text-decoration: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.01);
+        transition: 0.3s;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+      }
+      .vgm-footer a:hover {
+        color: rgba(0, 255, 200, 0.2);
+        border-bottom-color: rgba(0, 255, 200, 0.02);
+      }
+      @media (max-width: 750px) {
+        .vgm-screen {
+          padding: 1.5rem 1.2rem 0;
+          border-radius: 2rem;
+        }
+        .brand h1 {
+          font-size: 1.5rem;
+        }
+        .brand .logo-icon {
+          font-size: 1.8rem;
+        }
+        .brand h1 .sub {
+          font-size: 0.65rem;
+          padding-left: 0.4rem;
+        }
+        .section-search {
+          flex-direction: column;
+          align-items: stretch;
+        }
+        .search-wrapper {
+          max-width: 100%;
+          min-width: auto;
+        }
+        .movie-grid {
+          grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+          gap: 1.2rem;
+        }
+        .movie-name h3 {
+          font-size: 0.7rem;
+          white-space: normal;
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+        .section-tab {
+          font-size: 0.8rem;
+          padding: 0.4rem 1.2rem;
+        }
+        .section-search .title-group h2 {
+          font-size: 1rem;
+        }
+        .fullscreen-content {
+          padding: 1.8rem 1.2rem 1.5rem;
+          border-radius: 2rem;
+          gap: 1.5rem;
+        }
+        .fullscreen-title {
+          font-size: 1.6rem;
+        }
+        .fullscreen-back {
+          top: 0.8rem;
+          left: 0.8rem;
+          width: 44px;
+          height: 44px;
+          font-size: 1.3rem;
+        }
+        .fullscreen-actions .btn {
+          padding: 0.7rem 1.8rem;
+          font-size: 0.85rem;
+        }
+        .fullscreen-poster {
+          max-width: 350px;
+        }
+        .video-player-container {
+          border-radius: 0;
+        }
+        .video-controls {
+          padding: 1rem 0.8rem 0.8rem;
+        }
+        .controls-row {
+          gap: 0.4rem;
+        }
+        .controls-row .ctrl-btn {
+          font-size: 0.9rem;
+          padding: 0.3rem 0.4rem;
+          min-width: 30px;
+        }
+        .controls-row .ctrl-btn.seek-btn {
+          font-size: 0.7rem;
+          padding: 0.2rem 0.6rem;
+        }
+        .controls-row .ctrl-btn.play-btn {
+          font-size: 1.3rem;
+        }
+        .controls-row .volume-slider {
+          width: 40px;
+        }
+        .time-display {
+          font-size: 0.65rem;
+          min-width: 70px;
+        }
+        .video-title-overlay {
+          font-size: 0.8rem;
+          top: 1rem;
+          left: 1rem;
+          right: 1rem;
+        }
+        .video-close-btn {
+          top: 0.6rem;
+          right: 0.6rem;
+          width: 36px;
+          height: 36px;
+          font-size: 1.2rem;
+        }
+        .double-tap-indicator {
+          font-size: 2rem;
+          padding: 0.8rem 1.2rem;
+        }
+        .loader-spinner {
+          width: 50px;
+          height: 50px;
+        }
+        .loader-text {
+          font-size: 0.6rem;
+          margin-top: 1.5rem;
+        }
+        .loader-progress {
+          width: 150px;
+        }
+        .episode-list-container {
+          padding: 1rem 1.2rem;
+          max-height: 200px;
+        }
+        .episode-item .ep-name {
+          font-size: 0.75rem;
+        }
+        .episode-item .ep-actions button {
+          font-size: 0.6rem;
+          padding: 0.2rem 0.7rem;
+        }
+      }
+      @media (max-width: 440px) {
+        .movie-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.9rem;
+        }
+        .vgm-header {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 0.6rem;
+        }
+        .header-badge {
+          align-self: flex-start;
+          font-size: 0.65rem;
+          padding: 0.3rem 1.2rem;
+        }
+        .section-tabs {
+          justify-content: center;
+        }
+        .search-wrapper button {
+          padding: 0.4rem 1rem;
+          font-size: 0.7rem;
+        }
+        .brand h1 {
+          font-size: 1.2rem;
+        }
+        .fullscreen-content {
+          padding: 1.2rem 0.8rem 1.2rem;
+          border-radius: 1.5rem;
+        }
+        .fullscreen-title {
+          font-size: 1.3rem;
+        }
+        .fullscreen-poster {
+          max-width: 260px;
+        }
+        .fullscreen-actions {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .fullscreen-actions .btn {
+          width: 100%;
+          justify-content: center;
+        }
+        .fullscreen-back {
+          top: 0.5rem;
+          left: 0.5rem;
+          width: 38px;
+          height: 38px;
+          font-size: 1rem;
+        }
+        .video-controls {
+          padding: 0.6rem 0.4rem 0.4rem;
+        }
+        .controls-row .volume-slider {
+          width: 30px;
+        }
+        .time-display {
+          min-width: 50px;
+          font-size: 0.55rem;
+        }
+        .double-tap-indicator {
+          font-size: 1.5rem;
+          padding: 0.6rem 1rem;
+        }
+        .loader-spinner {
+          width: 40px;
+          height: 40px;
+        }
+        .loader-text {
+          font-size: 0.5rem;
+          margin-top: 1rem;
+        }
+        .loader-progress {
+          width: 120px;
+        }
+
+        .fullscreen-icons {
+          display: flex;
+          gap: 20px;
+          justify-content: center;
+          margin: 8px 0 12px 0;
+          color: #f1f0eb;
+          font-size: 18px;
+        }
+
+        .fullscreen-icons i {
+          cursor: default;
+          color: #f5f4f3;
+        }
+      }
+    </style>
   </head>
   <body>
-    <a
-      href="https://rfognbc0mhhj.premilkyway.com/vp/01/14612/wnymlsks3d6p_h/Pritam.And.Pedro.S01E01.Punishment.Posting.1080p.JIOHS.WEB.DL.Hindi-Multimovies.mkv.mp4?t=ll8FYZVs9aFlE8uE-crKR1N202lUmnn7n1sAMNBhCaY&amp;s=1785313781&amp;e=129600&amp;f=73061517&amp;sp=400&amp;i=152.56&amp;srv=qpljyz39awcoenfd"
-      class="btn btn-gr submit-btn"
-      style="height: 64px; width: 240px"
-      >Download</a
-    >
-    <video width="700" controls>
-      <source
-        src="https://rfognbc0mhhj.premilkyway.com/vp/01/14612/wnymlsks3d6p_h/Pritam.And.Pedro.S01E01.Punishment.Posting.1080p.JIOHS.WEB.DL.Hindi-Multimovies.mkv.mp4?t=ll8FYZVs9aFlE8uE-crKR1N202lUmnn7n1sAMNBhCaY&amp;s=1785313781&amp;e=129600&amp;f=73061517&amp;sp=400&amp;i=152.56&amp;srv=qpljyz39awcoenfd"
-        type="video/mp4"
-      />
-      Your browser does not support HTML5 video.
-    </video>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- FULLSCREEN OVERLAY -->
+
+    <div class="fullscreen-overlay" id="fullscreenOverlay">
+      <div class="fullscreen-content">
+        <div class="fullscreen-back" id="fullscreenBack">
+          <i class="fas fa-arrow-left"></i>
+        </div>
+        <div class="fullscreen-poster" id="fullscreenPoster">
+          <img id="fullscreenImage" src="" alt="Movie poster" />
+        </div>
+        <div class="fullscreen-info">
+          <div class="fullscreen-title" id="fullscreenTitle">Title</div>
+
+          <!-- Icon section added under title -->
+          <div class="fullscreen-icons">
+            <i class="fas fa-film" title="Movie"></i>
+            <i class="fas fa-star" title="Rating"></i>
+            <i class="fas fa-clock" title="Duration"></i>
+            <i class="fas fa-calendar-alt" title="Year"></i>
+          </div>
+
+          <div class="fullscreen-type" id="fullscreenType">Type</div>
+          <div id="episodeListContainer"></div>
+          <div class="fullscreen-actions">
+            <button class="btn btn-play" id="fullscreenPlayBtn">
+              <i class="fas fa-play"></i> Play
+            </button>
+            <button class="btn btn-download" id="fullscreenDownloadBtn">
+              <i class="fas fa-download"></i> Download
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIDEO PLAYER OVERLAY -->
+    <div class="video-player-overlay" id="videoPlayerOverlay">
+      <div class="video-player-container">
+        <div class="video-wrapper" id="videoWrapper">
+          <div class="video-loader" id="videoLoader">
+            <div class="loader-spinner"></div>
+            <div class="loader-text">
+              LOADING<span class="loader-dots"></span>
+            </div>
+            <div class="loader-progress">
+              <div class="loader-progress-bar"></div>
+            </div>
+            <div class="loader-error" id="loaderError">
+              <i class="fas fa-exclamation-circle"></i> Failed to load video.
+            </div>
+          </div>
+          <video
+            id="videoPlayer"
+            preload="metadata"
+            crossorigin="anonymous"
+            playsinline
+          >
+            <source type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="video-title-overlay" id="videoTitleOverlay">
+            Now Playing
+          </div>
+          <div class="video-close-btn" id="videoCloseBtn">
+            <i class="fas fa-times"></i>
+          </div>
+          <div class="double-tap-indicator" id="doubleTapIndicator"></div>
+          <div class="lock-overlay" id="lockOverlay">
+            <div class="lock-icon"><i class="fas fa-lock"></i></div>
+          </div>
+          <div class="video-controls" id="videoControls">
+            <div class="progress-container">
+              <div class="progress-bar" id="progressBar">
+                <div class="progress-filled" id="progressFilled"></div>
+              </div>
+              <span class="time-display" id="timeDisplay">0:00 / 0:00</span>
+            </div>
+            <div class="controls-row">
+              <button class="ctrl-btn play-btn" id="playPauseBtn">
+                <i class="fas fa-play"></i>
+              </button>
+              <button class="ctrl-btn seek-btn" id="seekBackBtn">
+                <i class="fas fa-backward"></i> 10s
+              </button>
+              <button class="ctrl-btn seek-btn" id="seekForwardBtn">
+                10s <i class="fas fa-forward"></i>
+              </button>
+              <button class="ctrl-btn volume-btn" id="volumeBtn">
+                <i class="fas fa-volume-up"></i>
+              </button>
+              <input
+                type="range"
+                class="volume-slider"
+                id="volumeSlider"
+                min="0"
+                max="1"
+                step="0.05"
+                value="1"
+              />
+              <span class="spacer"></span>
+              <button
+                class="ctrl-btn fullscreen-toggle"
+                id="fullscreenToggleBtn"
+              >
+                <i class="fas fa-expand"></i>
+              </button>
+              <button class="ctrl-btn lock-btn" id="lockBtn">
+                <i class="fas fa-unlock"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN UI -->
+    <div class="vgm-screen">
+      <div class="vgm-header">
+        <div class="brand">
+          <span class="logo-icon"><i class="fas fa-film"></i></span>
+          <h1>VGM movie <span class="sub">Trading</span></h1>
+        </div>
+      </div>
+      <div class="section-tabs" id="sectionTabs">
+        <button class="section-tab active" data-section="movies">
+          <i class="fas fa-film"></i> Movies
+          <span class="badge" id="moviesCount">0</span>
+        </button>
+        <button class="section-tab" data-section="webseries">
+          <i class="fas fa-tv"></i> Series
+          <span class="badge" id="webseriesCount">0</span>
+        </button>
+      </div>
+      <div class="section-panel active" id="panelMovies">
+        <div class="section-search">
+          <div class="title-group">
+            <h2>
+              <i class="fas fa-film"></i> Movies
+              <span class="count-hint">cinema</span>
+            </h2>
+          </div>
+          <div class="search-wrapper" id="searchMoviesWrapper">
+            <input
+              type="text"
+              id="searchMoviesInput"
+              placeholder="Search movies..."
+            /><button id="searchMoviesBtn">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="search-clear" id="clearMoviesSearch">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="movie-grid" id="moviesGrid"></div>
+        <div class="no-results" id="noMoviesResults">
+          <i class="fas fa-video-slash"></i> NO MOVIES FOUND
+        </div>
+      </div>
+      <div class="section-panel" id="panelWebseries">
+        <div class="section-search">
+          <div class="title-group">
+            <h2>
+              <i class="fas fa-tv"></i> Series
+              <span class="count-hint">binge</span>
+            </h2>
+          </div>
+          <div class="search-wrapper" id="searchWebseriesWrapper">
+            <input
+              type="text"
+              id="searchWebseriesInput"
+              placeholder="Search series..."
+            /><button id="searchWebseriesBtn">
+              <i class="fas fa-search"></i>
+            </button>
+            <button class="search-clear" id="clearWebseriesSearch">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="movie-grid" id="webseriesGrid"></div>
+        <div class="no-results" id="noWebseriesResults">
+          <i class="fas fa-tv-slash"></i> NO SERIES FOUND
+        </div>
+      </div>
+      <div class="vgm-footer">
+        <span><i class="fas fa-film"></i> VGM · curated</span>
+        <span><i class="fas fa-image"></i> image + title</span>
+        <span><i class="fas fa-download"></i> download available</span>
+        <a
+          href="#"
+          onclick="
+            alert('🎞️ add your own content in the script');
+            return false;
+          "
+          ><i class="fas fa-plus-circle"></i> add</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // ===== DATA – ALL LINKS FIXED =====
+      const moviesData = [
+        {
+          name: "Gatta Kusthi",
+          image:
+            "https://m.media-amazon.com/images/M/MV5BNDI0ZWRiMmUtNzM3My00ZWYxLWE1YjMtMGY3NDA3ZjE3ODM4XkEyXkFqcGc@._V1_.jpg",
+          download:
+            "https://H8kdvkLQO9xyeO7.acek-cdn.com/vp/01/08487/rh55kmnhsttw_n/Gatta_Kusthi_2__2026___Hindi-Tamil__1080p_WEB-DL_ESub.mkv.mp4?t=nLe0jcdeKiFirG0lkB82ejQhRVFkQYUyCmBC2lnJZ0A&s=1785571454&e=129600&f=42436783&sp=400&i=152.56&srv=yBYPq7qTAXaZkdT2",
+          video:
+            "https://H8kdvkLQO9xyeO7.acek-cdn.com/vp/01/08487/rh55kmnhsttw_n/Gatta_Kusthi_2__2026___Hindi-Tamil__1080p_WEB-DL_ESub.mkv.mp4?t=nLe0jcdeKiFirG0lkB82ejQhRVFkQYUyCmBC2lnJZ0A&s=1785571454&e=129600&f=42436783&sp=400&i=152.56&srv=yBYPq7qTAXaZkdT2",
+        },
+        {
+          name: "Satluj",
+          image:
+            "https://m.media-amazon.com/images/M/MV5BOTk1YTdiMDItZjAzOS00Njc0LTk3YTUtYjdiMWMyNDFhM2QzXkEyXkFqcGc@._V1_.jpg",
+          download:
+            "https://vPK1g9ITdGTK.acek-cdn.com/vp/01/08418/hahk5cz0cpbt_h/Satluj.2026.1080p.ZEE5.WEB-DL.DDP5.1.Atmos.H.265.mkv.mp4?t=9qk9vBhLFFnzH4JGSmqQIBqmogjJLWObJ8bNpaLqVWU&s=1785578439&e=129600&f=42094234&sp=400&i=152.56&srv=N9AMlcuPtQ8N",
+          video:
+            "https://vPK1g9ITdGTK.acek-cdn.com/vp/01/08418/hahk5cz0cpbt_h/Satluj.2026.1080p.ZEE5.WEB-DL.DDP5.1.Atmos.H.265.mkv.mp4?t=9qk9vBhLFFnzH4JGSmqQIBqmogjJLWObJ8bNpaLqVWU&s=1785578439&e=129600&f=42094234&sp=400&i=152.56&srv=N9AMlcuPtQ8N",
+        },
+        {
+          name: "Hai Jawani Toh Ishq Hona Hai",
+          image:
+            "https://m.media-amazon.com/images/M/MV5BZWE1OTg5ZDMtYjllZC00YzE2LTg1N2UtZmI0OTBmMWE3NzFkXkEyXkFqcGc@._V1_.jpg",
+          download:
+            "https://r4Eeg9MNGV6Q.acek-cdn.com/vp/01/08486/f1ht5d7idqlp_n/Hai.Jawani.Toh.Ishq.Hona.Hai.2026.1080p.HEVC.Hindi.DS4K.WEB-DL.5.1.ESub.x265.mkv.mp4?t=gIdSTenPB4Eg7n0YtMNsnisuXhBOfwb0YyU_C9BdgpA&s=1785590188&e=129600&f=42433675&sp=400&i=152.56&srv=IhRtNEyo46AU6BsV",
+          video:
+            "https://r4Eeg9MNGV6Q.acek-cdn.com/vp/01/08486/f1ht5d7idqlp_n/Hai.Jawani.Toh.Ishq.Hona.Hai.2026.1080p.HEVC.Hindi.DS4K.WEB-DL.5.1.ESub.x265.mkv.mp4?t=gIdSTenPB4Eg7n0YtMNsnisuXhBOfwb0YyU_C9BdgpA&s=1785590188&e=129600&f=42433675&sp=400&i=152.56&srv=IhRtNEyo46AU6BsV",
+        },
+        {
+          name: "The Matrix",
+          image:
+            "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGc@._V1_.jpg",
+          download:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          video:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        },
+      ];
+
+      const webseriesData = [
+        {
+          name: "Pritam Pedro",
+          image:
+            "https://m.media-amazon.com/images/M/MV5BNGMwOWM5NjEtYWQ4ZC00YWVkLTg5ZTctMWI2ZjNlODZjYWVlXkEyXkFqcGc@._V1_.jpg",
+          download:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          video:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          episodes: [
+            {
+              name: "Episode 1 - The Vanishing",
+              video:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+              download:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+            },
+            {
+              name: "Episode 2 - The Weirdo",
+              video:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+              download:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            },
+            {
+              name: "Episode 3 - Holly, Jolly",
+              video:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+              download:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            },
+          ],
+        },
+        {
+          name: "The Witcher",
+          image:
+            "https://m.media-amazon.com/images/M/MV5BZDc0Y2FiYjAtY2Q5MS00ZThjLWI2ZGUtYTIwYWJhYTYzOWU5XkEyXkFqcGc@._V1_.jpg",
+          download:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          video:
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          episodes: [
+            {
+              name: "Episode 1 - The End's Beginning",
+              video:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+              download:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+            },
+            {
+              name: "Episode 2 - Four Marks",
+              video:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+              download:
+                "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+            },
+          ],
+        },
+      ];
+
+      // DOM refs
+      const overlay = document.getElementById("fullscreenOverlay");
+      const fsImage = document.getElementById("fullscreenImage");
+      const fsTitle = document.getElementById("fullscreenTitle");
+      const fsType = document.getElementById("fullscreenType");
+      const fsBack = document.getElementById("fullscreenBack");
+      const fsPlayBtn = document.getElementById("fullscreenPlayBtn");
+      const fsDownloadBtn = document.getElementById("fullscreenDownloadBtn");
+      const episodeContainer = document.getElementById("episodeListContainer");
+      const videoOverlay = document.getElementById("videoPlayerOverlay");
+      const videoPlayer = document.getElementById("videoPlayer");
+      const videoWrapper = document.getElementById("videoWrapper");
+      const videoTitleOverlay = document.getElementById("videoTitleOverlay");
+      const videoCloseBtn = document.getElementById("videoCloseBtn");
+      const videoLoader = document.getElementById("videoLoader");
+      const loaderError = document.getElementById("loaderError");
+      const playPauseBtn = document.getElementById("playPauseBtn");
+      const progressBar = document.getElementById("progressBar");
+      const progressFilled = document.getElementById("progressFilled");
+      const timeDisplay = document.getElementById("timeDisplay");
+      const seekBackBtn = document.getElementById("seekBackBtn");
+      const seekForwardBtn = document.getElementById("seekForwardBtn");
+      const volumeBtn = document.getElementById("volumeBtn");
+      const volumeSlider = document.getElementById("volumeSlider");
+      const lockBtn = document.getElementById("lockBtn");
+      const lockOverlay = document.getElementById("lockOverlay");
+      const fullscreenToggleBtn = document.getElementById(
+        "fullscreenToggleBtn",
+      );
+      const doubleTapIndicator = document.getElementById("doubleTapIndicator");
+
+      let currentFSData = null;
+      let isLocked = false;
+      let controlsTimeout = null;
+      let isDragging = false;
+      let loadAttempts = 0;
+      let loaderTimeout = null;
+      const MAX_LOAD_ATTEMPTS = 3;
+
+      // ===== CORE FUNCTIONS =====
+      function openFullscreen(item, type) {
+        currentFSData = { ...item, type };
+        fsImage.src = item.image;
+        fsImage.alt = item.name + " poster";
+        fsTitle.textContent = item.name || "Untitled";
+        const typeClass = type === "movie" ? "movie-type" : "series-type";
+        const typeLabel =
+          type === "movie" ? "Movie || HINDI AUDIO" : "Web Series";
+        fsType.textContent = typeLabel;
+        fsType.className = "fullscreen-type " + typeClass;
+
+        if (type === "series" && item.episodes && item.episodes.length) {
+          let html =
+            '<div class="episode-list-container"><h4><i class="fas fa-list"></i> Episodes</h4>';
+          item.episodes.forEach((ep, idx) => {
+            html += `<div class="episode-item">
+                <span class="ep-name">${idx + 1}. ${ep.name}</span>
+                <div class="ep-actions">
+                  <button class="ep-play-btn" data-ep-video="${ep.video}" data-ep-name="${ep.name}"><i class="fas fa-play"></i> Play</button>
+                  <button class="ep-download-btn" data-ep-download="${ep.download || item.download}" data-ep-name="${ep.name}"><i class="fas fa-download"></i></button>
+                </div>
+              </div>`;
+          });
+          html += "</div>";
+          episodeContainer.innerHTML = html;
+          episodeContainer.style.display = "block";
+
+          episodeContainer.querySelectorAll(".ep-play-btn").forEach((btn) => {
+            btn.addEventListener("click", function (e) {
+              e.stopPropagation();
+              const vid = this.dataset.epVideo;
+              const name = this.dataset.epName || "Episode";
+              if (vid) openVideoPlayer(vid, `${item.name} - ${name}`);
+              else alert("No video available for this episode.");
+            });
+          });
+          episodeContainer
+            .querySelectorAll(".ep-download-btn")
+            .forEach((btn) => {
+              btn.addEventListener("click", function (e) {
+                e.stopPropagation();
+                const dl = this.dataset.epDownload;
+                const name = this.dataset.epName || "episode";
+                if (dl) {
+                  const link = document.createElement("a");
+                  link.href = dl;
+                  link.download =
+                    dl.split("/").pop() ||
+                    `${name.replace(/[^a-zA-Z0-9]/g, "_")}.mp4`;
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                } else alert("Download not available.");
+              });
+            });
+        } else {
+          episodeContainer.innerHTML = "";
+          episodeContainer.style.display = "none";
+        }
+        overlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeFullscreen() {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+        currentFSData = null;
+      }
+
+      function showLoader(show) {
+        if (show) {
+          videoLoader.classList.add("active");
+          videoLoader.style.opacity = "1";
+          loaderError.classList.remove("show");
+          const spinner = videoLoader.querySelector(".loader-spinner");
+          const progress = videoLoader.querySelector(".loader-progress");
+          const text = videoLoader.querySelector(".loader-text");
+          if (spinner) spinner.style.display = "block";
+          if (progress) progress.style.display = "block";
+          if (text) text.style.display = "block";
+        } else {
+          videoLoader.classList.remove("active");
+          videoLoader.style.opacity = "0";
+        }
+      }
+
+      function openVideoPlayer(videoUrl, title) {
+        loadAttempts = 0;
+        clearTimeout(loaderTimeout);
+        loaderError.classList.remove("show");
+        showLoader(true);
+
+        // Ensure the video source is set
+        videoPlayer.crossOrigin = "anonymous";
+        videoPlayer.src = videoUrl;
+        videoPlayer.load();
+        videoTitleOverlay.textContent = title || "Now Playing";
+        videoOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+
+        function onCanPlay() {
+          showLoader(false);
+          videoPlayer.removeEventListener("canplay", onCanPlay);
+          clearTimeout(loaderTimeout);
+          videoPlayer.play().catch(() => {});
+        }
+
+        function onPlay() {
+          showLoader(false);
+          videoPlayer.removeEventListener("play", onPlay);
+          clearTimeout(loaderTimeout);
+        }
+
+        function onError(e) {
+          loadAttempts++;
+          console.warn("Video load attempt", loadAttempts, e);
+          if (loadAttempts < MAX_LOAD_ATTEMPTS) {
+            setTimeout(() => {
+              videoPlayer.load();
+            }, 1000);
+            return;
+          }
+          showLoader(false);
+          loaderError.classList.add("show");
+          setTimeout(() => {
+            loaderError.classList.remove("show");
+          }, 4000);
+          videoPlayer.removeEventListener("error", onError);
+          clearTimeout(loaderTimeout);
+        }
+
+        videoPlayer.addEventListener("canplay", onCanPlay);
+        videoPlayer.addEventListener("play", onPlay);
+        videoPlayer.addEventListener("error", onError);
+
+        loaderTimeout = setTimeout(() => {
+          if (videoPlayer.readyState < 2) {
+            videoPlayer.load();
+          } else {
+            showLoader(false);
+          }
+          videoPlayer.removeEventListener("canplay", onCanPlay);
+          videoPlayer.removeEventListener("play", onPlay);
+        }, 8000);
+
+        isLocked = false;
+        lockOverlay.classList.remove("active");
+        lockBtn.innerHTML = '<i class="fas fa-unlock"></i>';
+        lockBtn.classList.remove("locked");
+        videoWrapper.classList.add("show-controls");
+        setTimeout(() => videoWrapper.classList.remove("show-controls"), 3000);
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        fullscreenToggleBtn.innerHTML = '<i class="fas fa-compress"></i>';
+      }
+
+      function closeVideoPlayer() {
+        videoPlayer.pause();
+        videoPlayer.src = "";
+        videoOverlay.classList.remove("active");
+        showLoader(false);
+        loaderError.classList.remove("show");
+        document.body.style.overflow = "";
+        clearTimeout(controlsTimeout);
+        clearTimeout(loaderTimeout);
+        if (document.fullscreenElement)
+          document.exitFullscreen().catch(() => {});
+      }
+
+      function togglePlay() {
+        if (videoPlayer.paused) {
+          videoPlayer.play().catch(() => {});
+          playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+        } else {
+          videoPlayer.pause();
+          playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+        }
+      }
+
+      function updateProgress() {
+        if (videoPlayer.duration && !isDragging) {
+          const percent =
+            (videoPlayer.currentTime / videoPlayer.duration) * 100;
+          progressFilled.style.width = percent + "%";
+          const current = formatTime(videoPlayer.currentTime);
+          const total = formatTime(videoPlayer.duration);
+          timeDisplay.textContent = current + " / " + total;
+        }
+      }
+
+      function formatTime(seconds) {
+        if (!seconds || isNaN(seconds)) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return mins + ":" + (secs < 10 ? "0" : "") + secs;
+      }
+
+      function seek(seconds) {
+        videoPlayer.currentTime = Math.min(
+          Math.max(videoPlayer.currentTime + seconds, 0),
+          videoPlayer.duration,
+        );
+      }
+
+      function setVolume(value) {
+        videoPlayer.volume = value;
+        volumeSlider.value = value;
+        updateVolumeIcon(value);
+      }
+
+      function updateVolumeIcon(value) {
+        if (value == 0)
+          volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+        else if (value < 0.5)
+          volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+        else volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+      }
+
+      function toggleLock() {
+        isLocked = !isLocked;
+        if (isLocked) {
+          lockOverlay.classList.add("active");
+          lockBtn.innerHTML = '<i class="fas fa-lock"></i>';
+          lockBtn.classList.add("locked");
+          videoWrapper.classList.remove("show-controls");
+        } else {
+          lockOverlay.classList.remove("active");
+          lockBtn.innerHTML = '<i class="fas fa-unlock"></i>';
+          lockBtn.classList.remove("locked");
+          videoWrapper.classList.add("show-controls");
+          setTimeout(() => {
+            if (!isLocked) videoWrapper.classList.remove("show-controls");
+          }, 3000);
+        }
+      }
+
+      function toggleFullscreen() {
+        const container = videoWrapper;
+        if (!document.fullscreenElement) {
+          if (container.requestFullscreen)
+            container.requestFullscreen().catch(() => {});
+          else if (container.webkitRequestFullscreen)
+            container.webkitRequestFullscreen();
+          else if (container.msRequestFullscreen)
+            container.msRequestFullscreen();
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+
+      // ===== EVENT LISTENERS =====
+      playPauseBtn.addEventListener("click", togglePlay);
+      videoPlayer.addEventListener("play", () => {
+        playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+      });
+      videoPlayer.addEventListener("pause", () => {
+        playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+      });
+      videoPlayer.addEventListener("timeupdate", updateProgress);
+      videoPlayer.addEventListener("loadedmetadata", updateProgress);
+
+      progressBar.addEventListener("click", (e) => {
+        if (isLocked) return;
+        const rect = progressBar.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        videoPlayer.currentTime = percent * videoPlayer.duration;
+      });
+
+      progressBar.addEventListener("mousedown", (e) => {
+        if (isLocked) return;
+        isDragging = true;
+        progressBar.classList.add("dragging");
+        const rect = progressBar.getBoundingClientRect();
+        const percent = (e.clientX - rect.left) / rect.width;
+        videoPlayer.currentTime = percent * videoPlayer.duration;
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (isDragging) {
+          const rect = progressBar.getBoundingClientRect();
+          let percent = (e.clientX - rect.left) / rect.width;
+          percent = Math.min(Math.max(percent, 0), 1);
+          progressFilled.style.width = percent * 100 + "%";
+          const current = formatTime(percent * videoPlayer.duration);
+          const total = formatTime(videoPlayer.duration);
+          timeDisplay.textContent = current + " / " + total;
+        }
+      });
+
+      document.addEventListener("mouseup", () => {
+        if (isDragging) {
+          isDragging = false;
+          progressBar.classList.remove("dragging");
+        }
+      });
+
+      progressBar.addEventListener(
+        "touchstart",
+        (e) => {
+          if (isLocked) return;
+          isDragging = true;
+          progressBar.classList.add("dragging");
+          const touch = e.touches[0];
+          const rect = progressBar.getBoundingClientRect();
+          const percent = (touch.clientX - rect.left) / rect.width;
+          videoPlayer.currentTime = percent * videoPlayer.duration;
+        },
+        { passive: true },
+      );
+
+      progressBar.addEventListener(
+        "touchmove",
+        (e) => {
+          if (isDragging) {
+            const touch = e.touches[0];
+            const rect = progressBar.getBoundingClientRect();
+            let percent = (touch.clientX - rect.left) / rect.width;
+            percent = Math.min(Math.max(percent, 0), 1);
+            progressFilled.style.width = percent * 100 + "%";
+            const current = formatTime(percent * videoPlayer.duration);
+            const total = formatTime(videoPlayer.duration);
+            timeDisplay.textContent = current + " / " + total;
+          }
+        },
+        { passive: true },
+      );
+
+      progressBar.addEventListener(
+        "touchend",
+        () => {
+          isDragging = false;
+          progressBar.classList.remove("dragging");
+        },
+        { passive: true },
+      );
+
+      seekBackBtn.addEventListener("click", () => {
+        if (!isLocked) seek(-10);
+      });
+      seekForwardBtn.addEventListener("click", () => {
+        if (!isLocked) seek(10);
+      });
+      volumeSlider.addEventListener("input", (e) => {
+        setVolume(parseFloat(e.target.value));
+      });
+      volumeBtn.addEventListener("click", () => {
+        if (videoPlayer.volume > 0) setVolume(0);
+        else setVolume(1);
+      });
+      lockBtn.addEventListener("click", toggleLock);
+      lockOverlay.addEventListener("click", toggleLock);
+      fullscreenToggleBtn.addEventListener("click", toggleFullscreen);
+
+      videoWrapper.addEventListener("dblclick", (e) => {
+        if (!isLocked) {
+          const rect = videoWrapper.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const width = rect.width;
+          const third = width / 3;
+          let amt = 0,
+            dir = "";
+          if (x < third) {
+            dir = "backward";
+            amt = -10;
+          } else if (x > width - third) {
+            dir = "forward";
+            amt = 10;
+          } else return;
+          doubleTapIndicator.textContent = dir === "forward" ? "+10s" : "-10s";
+          doubleTapIndicator.classList.add("show");
+          setTimeout(() => doubleTapIndicator.classList.remove("show"), 600);
+          seek(amt);
+        }
+      });
+
+      videoWrapper.addEventListener("mousemove", () => {
+        if (!isLocked) {
+          videoWrapper.classList.add("show-controls");
+          clearTimeout(controlsTimeout);
+          controlsTimeout = setTimeout(() => {
+            if (!isLocked) videoWrapper.classList.remove("show-controls");
+          }, 3000);
+        }
+      });
+
+      videoWrapper.addEventListener("mouseleave", () => {
+        if (!isLocked) {
+          clearTimeout(controlsTimeout);
+          setTimeout(() => {
+            if (!isLocked) videoWrapper.classList.remove("show-controls");
+          }, 500);
+        }
+      });
+
+      videoWrapper.addEventListener("click", (e) => {
+        if (e.target === videoPlayer || e.target.closest(".video-wrapper")) {
+          if (!isLocked) togglePlay();
+        }
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (videoOverlay.classList.contains("active")) {
+          if (e.key === " " || e.key === "Space") {
+            e.preventDefault();
+            if (!isLocked) togglePlay();
+          }
+          if (e.key === "ArrowRight") {
+            e.preventDefault();
+            if (!isLocked) seek(10);
+          }
+          if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            if (!isLocked) seek(-10);
+          }
+          if (e.key === "l" || e.key === "L") {
+            toggleLock();
+          }
+          if (e.key === "f" || e.key === "F") {
+            toggleFullscreen();
+          }
+          if (e.key === "Escape") {
+            closeVideoPlayer();
+          }
+        }
+      });
+
+      videoCloseBtn.addEventListener("click", closeVideoPlayer);
+      videoOverlay.addEventListener("click", function (e) {
+        if (e.target === this) closeVideoPlayer();
+      });
+
+      document.addEventListener("fullscreenchange", () => {
+        if (document.fullscreenElement) {
+          fullscreenToggleBtn.innerHTML = '<i class="fas fa-compress"></i>';
+        } else {
+          fullscreenToggleBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        }
+      });
+
+      fsBack.addEventListener("click", closeFullscreen);
+
+      fsPlayBtn.addEventListener("click", function () {
+        if (currentFSData) {
+          if (
+            currentFSData.type === "series" &&
+            currentFSData.episodes &&
+            currentFSData.episodes.length
+          ) {
+            const firstEp = currentFSData.episodes[0];
+            if (firstEp && firstEp.video) {
+              openVideoPlayer(
+                firstEp.video,
+                `${currentFSData.name} - ${firstEp.name}`,
+              );
+            } else {
+              alert("No video available.");
+            }
+          } else if (currentFSData.video) {
+            openVideoPlayer(currentFSData.video, currentFSData.name);
+          } else {
+            alert("No video available.");
+          }
+        }
+      });
+
+      fsDownloadBtn.addEventListener("click", function () {
+        if (!currentFSData) return;
+        let dl = currentFSData.download;
+        if (
+          currentFSData.type === "series" &&
+          currentFSData.episodes &&
+          currentFSData.episodes.length
+        ) {
+          const firstEp = currentFSData.episodes[0];
+          dl = firstEp?.download || currentFSData.download;
+        }
+        if (dl) {
+          const link = document.createElement("a");
+          link.href = dl;
+          link.download =
+            dl.split("/").pop() ||
+            `${currentFSData.name.replace(/[^a-zA-Z0-9]/g, "_")}.mp4`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          alert("Download not available.");
+        }
+        const orig = fsDownloadBtn.innerHTML;
+        fsDownloadBtn.innerHTML = '<i class="fas fa-check"></i> Downloaded!';
+        setTimeout(() => {
+          fsDownloadBtn.innerHTML = orig;
+        }, 2000);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+          if (videoOverlay.classList.contains("active")) closeVideoPlayer();
+          else if (overlay.classList.contains("active")) closeFullscreen();
+        }
+      });
+
+      // ===== GRID BUILDERS =====
+      function createCard(item, type) {
+        const card = document.createElement("div");
+        card.className = "movie-card";
+        card.dataset.name = item.name.toLowerCase();
+        card.dataset.image = item.image;
+        card.dataset.type = type;
+        const poster = document.createElement("div");
+        poster.className = "movie-poster";
+        const img = document.createElement("img");
+        img.src =
+          item.image ||
+          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600"%3E%3Crect width="400" height="600" fill="%23121224"/%3E%3Ctext x="50%25" y="50%25" font-family="monospace" font-size="20" fill="%23333355" text-anchor="middle" dy=".3em"%3E🎬 no image%3C/text%3E%3C/svg%3E';
+        img.alt = item.name + " poster";
+        img.loading = "lazy";
+        img.onerror = function () {
+          this.src =
+            'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600"%3E%3Crect width="400" height="600" fill="%23121224"/%3E%3Ctext x="50%25" y="50%25" font-family="monospace" font-size="18" fill="%23333355" text-anchor="middle" dy=".3em"%3E🎬 fallback%3C/text%3E%3C/svg%3E';
+        };
+        poster.appendChild(img);
+        card.appendChild(poster);
+        const nameDiv = document.createElement("div");
+        nameDiv.className = "movie-name";
+        const title = document.createElement("h3");
+        title.textContent = item.name || "Untitled";
+        nameDiv.appendChild(title);
+        const tag = document.createElement("span");
+        tag.className = "type-tag";
+        if (type === "movie") {
+          tag.classList.add("movie-tag");
+          tag.textContent = "Movie";
+        } else {
+          tag.classList.add("series-tag");
+          tag.textContent = "Series";
+        }
+        nameDiv.appendChild(tag);
+        card.appendChild(nameDiv);
+        card.addEventListener("click", function () {
+          const name = this.dataset.name;
+          const image = this.dataset.image;
+          const type = this.dataset.type;
+          let fullItem;
+          if (type === "movie") {
+            fullItem = moviesData.find((m) => m.name.toLowerCase() === name);
+            if (!fullItem) fullItem = { name, image, download: "", video: "" };
+            openFullscreen(fullItem, "movie");
+          } else {
+            fullItem = webseriesData.find((m) => m.name.toLowerCase() === name);
+            if (!fullItem)
+              fullItem = { name, image, download: "", video: "", episodes: [] };
+            openFullscreen(fullItem, "series");
+          }
+        });
+        return card;
+      }
+
+      function buildGrid(container, data, type) {
+        container.innerHTML = "";
+        data.forEach((item) => {
+          container.appendChild(createCard(item, type));
+        });
+        const cards = container.querySelectorAll(".movie-card");
+        cards.forEach((card, i) => {
+          card.style.animation = "none";
+          card.offsetHeight;
+          card.style.animation = `cardAppear 0.6s cubic-bezier(0.15,0.85,0.35,1) backwards`;
+          card.style.animationDelay = `${0.05 + i * 0.03}s`;
+        });
+      }
+
+      function filterGrid(container, query, noResultsEl) {
+        const term = query.trim().toLowerCase();
+        const cards = container.querySelectorAll(".movie-card");
+        let hasVisible = false;
+        cards.forEach((card) => {
+          const name = card.dataset.name || "";
+          const match = name.includes(term);
+          if (term === "") {
+            card.classList.remove("hidden");
+            hasVisible = true;
+          } else {
+            if (match) {
+              card.classList.remove("hidden");
+              hasVisible = true;
+            } else {
+              card.classList.add("hidden");
+            }
+          }
+        });
+        if (term !== "" && !hasVisible) noResultsEl.classList.add("visible");
+        else noResultsEl.classList.remove("visible");
+        const wrapper = container
+          .closest(".section-panel")
+          .querySelector(".search-wrapper");
+        const clearBtn = wrapper.querySelector(".search-clear");
+        if (term !== "") clearBtn.classList.add("visible");
+        else clearBtn.classList.remove("visible");
+      }
+
+      function setupSearch(
+        panelId,
+        gridId,
+        noResultsId,
+        inputId,
+        btnId,
+        clearId,
+      ) {
+        const grid = document.getElementById(gridId);
+        const noResults = document.getElementById(noResultsId);
+        const input = document.getElementById(inputId);
+        const btn = document.getElementById(btnId);
+        const clear = document.getElementById(clearId);
+        function doSearch() {
+          filterGrid(grid, input.value, noResults);
+        }
+        input.addEventListener("input", doSearch);
+        btn.addEventListener("click", (e) => {
+          e.preventDefault();
+          doSearch();
+        });
+        clear.addEventListener("click", () => {
+          input.value = "";
+          doSearch();
+          input.focus();
+        });
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            doSearch();
+          }
+        });
+      }
+
+      // ===== INIT =====
+      const moviesGrid = document.getElementById("moviesGrid");
+      const webseriesGrid = document.getElementById("webseriesGrid");
+      buildGrid(moviesGrid, moviesData, "movie");
+      buildGrid(webseriesGrid, webseriesData, "series");
+      document.getElementById("moviesCount").textContent = moviesData.length;
+      document.getElementById("webseriesCount").textContent =
+        webseriesData.length;
+      setupSearch(
+        "panelMovies",
+        "moviesGrid",
+        "noMoviesResults",
+        "searchMoviesInput",
+        "searchMoviesBtn",
+        "clearMoviesSearch",
+      );
+      setupSearch(
+        "panelWebseries",
+        "webseriesGrid",
+        "noWebseriesResults",
+        "searchWebseriesInput",
+        "searchWebseriesBtn",
+        "clearWebseriesSearch",
+      );
+
+      const tabs = document.querySelectorAll(".section-tab");
+      const panels = {
+        movies: document.getElementById("panelMovies"),
+        webseries: document.getElementById("panelWebseries"),
+      };
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          tabs.forEach((t) => t.classList.remove("active"));
+          tab.classList.add("active");
+          const section = tab.dataset.section;
+          Object.keys(panels).forEach((key) => {
+            panels[key].classList.toggle("active", key === section);
+          });
+          const grid = section === "movies" ? moviesGrid : webseriesGrid;
+          const cards = grid.querySelectorAll(".movie-card:not(.hidden)");
+          cards.forEach((card, i) => {
+            card.style.animation = "none";
+            card.offsetHeight;
+            card.style.animation = `cardAppear 0.6s cubic-bezier(0.15,0.85,0.35,1) backwards`;
+            card.style.animationDelay = `${0.05 + i * 0.03}s`;
+          });
+          if (section === "movies") {
+            filterGrid(
+              moviesGrid,
+              document.getElementById("searchMoviesInput").value,
+              document.getElementById("noMoviesResults"),
+            );
+          } else {
+            filterGrid(
+              webseriesGrid,
+              document.getElementById("searchWebseriesInput").value,
+              document.getElementById("noWebseriesResults"),
+            );
+          }
+        });
+      });
+
+      filterGrid(moviesGrid, "", document.getElementById("noMoviesResults"));
+      filterGrid(
+        webseriesGrid,
+        "",
+        document.getElementById("noWebseriesResults"),
+      );
+      setTimeout(() => {
+        document.querySelectorAll(".movie-grid").forEach((grid) => {
+          const cards = grid.querySelectorAll(".movie-card");
+          cards.forEach((card, i) => {
+            card.style.animationDelay = `${0.05 + i * 0.03}s`;
+          });
+        });
+      }, 100);
+    </script>
   </body>
 </html>
